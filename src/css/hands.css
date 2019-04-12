@@ -1,3 +1,9 @@
+img {
+  width: 200px;
+}
+.img-player{
+  transform: rotateY(180deg);
+}
 @keyframes shakePlayer {
   0% {
     transform: rotateY(180deg) translateY(0px);

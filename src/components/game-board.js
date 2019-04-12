@@ -7,46 +7,14 @@ class GameBoard extends HTMLElement {
                 img {
                     width: 200px;
                 }
-                .player-hand img{
-                     transform: rotateY(180deg);
-                }
-                @keyframes shakePlayer {
-  0% {
-    transform: rotateY(180deg) translateY(0px);
-  }
-  15% {
-    transform: rotateY(180deg) translateY(-50px);
-  }
-  25% {
-    transform: rotateY(180deg) translateY(0px);
-  }
-  35% {
-    transform: rotateY(180deg) translateY(-50px);
-  }
-  50% {
-    transform: rotateY(180deg) translateY(0px);
-  }
-  65% {
-    transform: rotateY(180deg) translateY(-50px);
-  }
-  75% {
-    transform: rotateY(180deg) translateY(0px);
-  }
-  85% {
-    transform: rotateY(180deg) translateY(-50px);
-  }
-  100% {
-    transform: rotateY(180deg) translateY(0px);
-  }
-}
+              h2 ::slotted(h2){
+                 color: #fff;
+               } 
             </style>
             <section class='board'>
-                <div class='player-hand'>
-                     <slot></slot>
-                </div>
-                <div class='cpu-hand'>
-                     <img src="./assets/img/rock.png" alt="" />
-                </div>
+              <h2><slot name='title'>Welcome! Player play the game...</slot></h2> 
+              <slot name='player-hand'> <img src="./assets/img/rock.png" alt="piedra" class="img-player"/></slot>
+              <slot name='cpu-hand'>  <img src="./assets/img/rock.png" alt="piedra" /></slot>  
             </section>
         `;
   }

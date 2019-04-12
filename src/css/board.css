@@ -1,0 +1,30 @@
+game-board{
+    display:grid;
+    grid-template-columns: 1fr;
+    width: 80%;
+    margin: 10px auto;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    grid-gap: 5px;
+    padding: 5px;
+}
+.board-hands-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    margin: 10px auto;
+    justify-content: center;
+    align-content: center;
+    padding: 5px;
+  }
+
+  .divisor {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 155, 255, 0)
+    );
