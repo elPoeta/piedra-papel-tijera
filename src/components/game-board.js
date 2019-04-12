@@ -170,7 +170,9 @@ class GameBoard extends HTMLElement {
                   <li><button id='btn-papel'>Papel</button></li>
                   <li><button id='btn-tijera'>Tijera</button></li>
                 </ul>
-               
+               <div>
+                <h2 id='resultado'></h2>
+               </div>
             </section>
             </template>
         `;
@@ -190,6 +192,7 @@ class GameBoard extends HTMLElement {
   }
 
   _shake() {
+    this.shadowRoot.querySelector('#resultado').innerHTML = '';
     this.shadowRoot.querySelector(".img-player").classList.add('hand-player-animation');
     this.shadowRoot.querySelector(".img-cpu").classList.add('hand-cpu-animation');
   }
@@ -214,6 +217,20 @@ class GameBoard extends HTMLElement {
     console.log('Score ROOT', score);
     this.shadowRoot.querySelector('#score-player').innerHTML = score.player;
     this.shadowRoot.querySelector('#score-cpu').innerHTML = score.cpu;
+    const resultado = this.shadowRoot.querySelector('#resultado');
+    switch (score.win) {
+      case 'player': {
+        resultado.innerHTML = `${this.playerName} Gana!!!`;
+        break;
+      }
+      case 'cpu': {
+        resultado.innerHTML = `Computer Gana!!!`;
+        break;
+      }
+      default: {
+        resultado.innerHTML = "Empate!!!";
+      }
+    }
   }
 }
 customElements.define("game-board", GameBoard);

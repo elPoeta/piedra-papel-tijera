@@ -12,7 +12,8 @@ const game = () => {
   const options = ['piedra', 'papel', 'tijera'];
   const score = {
     player: 0,
-    cpu: 0
+    cpu: 0,
+    win: "empate"
   }
   main.innerHTML = renderBoard(enterGame.userName);
   const btnPlayerPlay = document.querySelector('game-board');
@@ -34,16 +35,20 @@ const game = () => {
   const compareHands = (playerChoice, cpuChoice) => {
     if (playerChoice === cpuChoice) {
       console.log('EMPATE!! ', score);
+      score.win = "empate";
+      updateScores();
       return;
     }
     if (playerChoice === 'piedra') {
       if (cpuChoice === 'tijera') {
         score.player++;
+        score.win = "player";
         updateScores();
         console.log('PLAYER WIN!!', score);
         return;
       } else {
         score.cpu++;
+        score.win = "cpu";
         updateScores();
         console.log('CPU WIN!!!', score);
 
@@ -53,11 +58,13 @@ const game = () => {
     if (playerChoice === 'papel') {
       if (cpuChoice === 'piedra') {
         score.player++;
+        score.win = "player";
         updateScores();
         console.log('PLAYER WIN!!', score);
         return;
       } else {
         score.cpu++;
+        score.win = "cpu";
         updateScores();
         console.log('CPU WIN!!!', score);
         return;
@@ -66,11 +73,13 @@ const game = () => {
     if (playerChoice === 'tijera') {
       if (cpuChoice === 'papel') {
         score.player++;
+        score.win = "player";
         updateScores();
         console.log('PLAYER WIN!!', score);
         return;
       } else {
         score.cpu++;
+        score.win = "cpu";
         updateScores();
         console.log('CPU WIN!!!', score);
         return;
