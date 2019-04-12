@@ -10,16 +10,77 @@ const renderBoard = userName => {
 }
 const game = () => {
   const options = ['piedra', 'papel', 'tijera'];
+  const score = {
+    player: 0,
+    cpu: 0
+  }
   main.innerHTML = renderBoard(enterGame.userName);
   const btnPlayerPlay = document.querySelector('game-board');
   btnPlayerPlay.addEventListener('playerplay', e => {
     const cpuOption = Math.floor(Math.random() * 3);
-
+    const cpuChoice = options[cpuOption];
+    const playerChoice = options[btnPlayerPlay.option]
     setTimeout(() => {
       btnPlayerPlay.removeAnimation();
-      console.log('palyer : ', options[btnPlayerPlay.option], ' CPU: ', options[cpuOption]);
-    }, 2000)
+      updateBoard(playerChoice, cpuChoice);
+      console.log('palyer : ', playerChoice, ' CPU: ', cpuChoice);
+      compareHands(playerChoice, cpuChoice);
+    }, 2000);
 
   });
+  const updateBoard = (playerChoice, cpuChoice) => {
+    btnPlayerPlay.updateBoardImage(playerChoice, cpuChoice);
+  }
+  const compareHands = (playerChoice, cpuChoice) => {
+    if (playerChoice === cpuChoice) {
+      console.log('EMPATE!! ', score);
+      return;
+    }
+    if (playerChoice === 'piedra') {
+      if (cpuChoice === 'tijera') {
+        score.player++;
+        updateScores();
+        console.log('PLAYER WIN!!', score);
+        return;
+      } else {
+        score.cpu++;
+        updateScores();
+        console.log('CPU WIN!!!', score);
+
+        return;
+      }
+    }
+    if (playerChoice === 'papel') {
+      if (cpuChoice === 'piedra') {
+        score.player++;
+        updateScores();
+        console.log('PLAYER WIN!!', score);
+        return;
+      } else {
+        score.cpu++;
+        updateScores();
+        console.log('CPU WIN!!!', score);
+        return;
+      }
+    }
+    if (playerChoice === 'tijera') {
+      if (cpuChoice === 'papel') {
+        score.player++;
+        updateScores();
+        console.log('PLAYER WIN!!', score);
+        return;
+      } else {
+        score.cpu++;
+        updateScores();
+        console.log('CPU WIN!!!', score);
+        return;
+      }
+    }
+  }
+  const updateScores = () => {
+    console.log('upd ', score);
+    btnPlayerPlay.updateScore(score);
+  }
 }
+
 

@@ -204,5 +204,16 @@ class GameBoard extends HTMLElement {
     this.dispatchEvent(playerPlayEvent);
 
   }
+  updateBoardImage(player, cpu) {
+    const playerImg = this.shadowRoot.querySelector('.img-player');
+    playerImg.src = `./assets/img/${player}.png`;
+    const cpuImg = this.shadowRoot.querySelector('.img-cpu');
+    cpuImg.src = `./assets/img/${cpu}.png`;
+  }
+  updateScore(score) {
+    console.log('Score ROOT', score);
+    this.shadowRoot.querySelector('#score-player').innerHTML = score.player;
+    this.shadowRoot.querySelector('#score-cpu').innerHTML = score.cpu;
+  }
 }
 customElements.define("game-board", GameBoard);
