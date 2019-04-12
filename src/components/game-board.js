@@ -1,7 +1,7 @@
 class GameBoard extends HTMLElement {
   constructor() {
     super();
-    this.playerName = 'Player';
+    this.playerName = "Player";
     this._scorePlayer = 0;
     this._scoreCpu = 0;
     this.option;
@@ -62,6 +62,16 @@ class GameBoard extends HTMLElement {
                 .img-player{
                   transform: rotateY(180deg);
                 }
+            .ok-cpu{
+                  transform: rotate(180deg);
+                }
+             .ok-tie{
+                 transform: rotate(90deg);
+             }   
+             .pulgar{
+               width : 30px;
+               padding:2px;
+             }
                 ul{
                   justify-self:center;
                   text-align:center;
@@ -178,57 +188,81 @@ class GameBoard extends HTMLElement {
         `;
   }
   connectedCallback() {
-    this.playerName = this.getAttribute('player');
-    const content = this.shadowRoot.querySelector('template').content.cloneNode(true);
-    content.querySelector('.player-name').innerHTML = this.playerName;
-    content.querySelector('.title').innerHTML = `Welcome! ${this.playerName}, play the game...`
-    content.querySelector('#score-player').innerHTML = this._scorePlayer;
-    content.querySelector('#score-cpu').innerHTML = this._scoreCpu;
-    const buttons = content.querySelectorAll('button');
+    this.playerName = this.getAttribute("player");
+    const content = this.shadowRoot
+      .querySelector("template")
+      .content.cloneNode(true);
+    content.querySelector(".player-name").innerHTML = this.playerName;
+    content.querySelector(".title").innerHTML = `Welcome! ${
+      this.playerName
+    }, play the game...`;
+    content.querySelector("#score-player").innerHTML = this._scorePlayer;
+    content.querySelector("#score-cpu").innerHTML = this._scoreCpu;
+    const buttons = content.querySelectorAll("button");
     buttons.forEach((btn, index) => {
-      btn.addEventListener('click', e => this._playerPlay(index));
+      btn.addEventListener("click", e => this._playerPlay(index));
     });
     this.shadowRoot.appendChild(content);
   }
 
   _shake() {
-    this.shadowRoot.querySelector('#resultado').innerHTML = '';
-    this.shadowRoot.querySelector(".img-player").classList.add('hand-player-animation');
-    this.shadowRoot.querySelector(".img-cpu").classList.add('hand-cpu-animation');
+    this.shadowRoot.querySelector("#resultado").innerHTML = "";
+    this.shadowRoot
+      .querySelector(".img-player")
+      .classList.add("hand-player-animation");
+    this.shadowRoot
+      .querySelector(".img-cpu")
+      .classList.add("hand-cpu-animation");
   }
   removeAnimation() {
-    this.shadowRoot.querySelector(".img-player").classList.remove('hand-player-animation');
-    this.shadowRoot.querySelector(".img-cpu").classList.remove('hand-cpu-animation');
+    this.shadowRoot
+      .querySelector(".img-player")
+      .classList.remove("hand-player-animation");
+    this.shadowRoot
+      .querySelector(".img-cpu")
+      .classList.remove("hand-cpu-animation");
   }
   _playerPlay = e => {
     this.option = e;
-    const playerPlayEvent = new Event('playerplay');
+    const playerPlayEvent = new Event("playerplay");
     this._shake();
     this.dispatchEvent(playerPlayEvent);
-
-  }
+  };
   updateBoardImage(player, cpu) {
-    const playerImg = this.shadowRoot.querySelector('.img-player');
+    const playerImg = this.shadowRoot.querySelector(".img-player");
     playerImg.src = `./assets/img/${player}.png`;
-    const cpuImg = this.shadowRoot.querySelector('.img-cpu');
+    const cpuImg = this.shadowRoot.querySelector(".img-cpu");
     cpuImg.src = `./assets/img/${cpu}.png`;
   }
   updateScore(score) {
-    console.log('Score ROOT', score);
-    this.shadowRoot.querySelector('#score-player').innerHTML = score.player;
-    this.shadowRoot.querySelector('#score-cpu').innerHTML = score.cpu;
-    const resultado = this.shadowRoot.querySelector('#resultado');
+    console.log("Score ROOT", score);
+    this.shadowRoot.querySelector("#score-player").innerHTML = score.player;
+    this.shadowRoot.querySelector("#score-cpu").innerHTML = score.cpu;
+    const resultado = this.shadowRoot.querySelector("#resultado");
     switch (score.win) {
-      case 'player': {
-        resultado.innerHTML = `${this.playerName} Gana!!!`;
+      case "player": {
+        resultado.innerHTML = `
+        <ul>
+        <li><img src="./assets/img/ok.png" alt='win!!' class='pulgar'/> ${
+          this.playerName
+        } Gana!!!  <img src="./assets/img/ok.png" alt='win!!' class='pulgar'/> </li>
+        </ul>
+        `;
         break;
       }
-      case 'cpu': {
-        resultado.innerHTML = `Computer Gana!!!`;
+      case "cpu": {
+        resultado.innerHTML = `
+         <ul>
+        <li><img src="./assets/img/ok.png" alt='Loose!!' class='pulgar ok-cpu'/> Computer Gana!!! <img src="./assets/img/ok.png" alt='Loose!!' class='pulgar ok-cpu'/></li>
+        </ul>`;
         break;
       }
       default: {
-        resultado.innerHTML = "Empate!!!";
+        resultado.innerHTML = `
+        <ul>
+        <li><img src="./assets/img/ok.png" alt='Tie!!' class='pulgar ok-tie'/>  Empate!!!  <img src="./assets/img/ok.png" alt='Tie!!' class='pulgar ok-tie'/></li>
+        </ul>
+        `;
       }
     }
   }
