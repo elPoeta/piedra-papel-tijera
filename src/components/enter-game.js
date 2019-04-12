@@ -2,6 +2,7 @@ class EnterGame extends HTMLElement {
     constructor() {
         super();
         this.userName;
+        this._error = false;
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML =
             `<style>
@@ -11,7 +12,11 @@ class EnterGame extends HTMLElement {
                 margin: 0 auto;
                 width:60%;
                }
-               
+               .error{
+                color: #dd4141;
+                padding: 5px;
+                font-weight: bold;
+               }
                #user-name{
                    width: 80%;
                    padding: 8px;
@@ -51,12 +56,13 @@ class EnterGame extends HTMLElement {
             const ingresarEvent = new Event('ingresar');
             this.dispatchEvent(ingresarEvent);
         } else {
-            if (!document.querySelector(".error")) {
+            if (!this._error) {
                 const el = document.createElement("my-error");
-                el.textContent = "Error por favor ingrese su nombre";
+                el.textContent = "Error!!!, por favor ingrese su nombre";
                 el.className = "error";
                 const parent = this.shadowRoot.querySelector(".ingresar").parentNode;
                 parent.insertBefore(el, this.shadowRoot.querySelector(".ingresar"));
+                this._error = true;
             }
         }
 
@@ -64,7 +70,9 @@ class EnterGame extends HTMLElement {
 
     _removeError = e => {
         const elem = this.shadowRoot.querySelector(".error");
+
         if (elem) {
+            this._error = false;
             elem.parentNode.removeChild(elem);
         }
     };

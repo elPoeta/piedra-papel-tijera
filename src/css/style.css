@@ -9,13 +9,9 @@ body {
     padding:0;
     background-color: #305566; 
 }
-h1,h2{
-    color: #fff;
-}
-h3{
-    color:#fda744;
-}
+
 h1{
+    color: #fff;
     font-size: 2.5em;
     text-align: center;
     padding: 5px;
@@ -28,6 +24,18 @@ h1{
     align-content: center;
     justify-content: center;
 }
-
+figure{
+    margin: 25px auto;
+    justify-self: center;
+    text-align: center;
+    border-radius: 50%;
+    padding: 3rem 2rem;
+    background-color: #fda744;
+    border: 10px solid #fff;
+    width: 350px;
+}
+img{
+    width: 200px; 
+}
 
 
