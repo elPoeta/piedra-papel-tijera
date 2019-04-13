@@ -156,6 +156,52 @@ class GameBoard extends HTMLElement {
                     transform: translateY(0px);
                   }
                 }
+                @media (max-width: 600px){
+                  board{
+                    width: 100%;
+                    margin: 5px auto;
+                    grid-gap: 2px;
+                    padding: 2px;
+                }
+                .board-hands-container{
+                    width: 100%;
+                    margin: 5px auto;
+                    padding: 5px;
+                  }
+               
+                  .divisor {
+                    height: 2px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                  }
+                
+                  h2{
+                   font-size: .8em;
+                  }
+                  h3{
+                    font-size: 1em;
+                  }
+                  h4{
+                    font-size: 1em;
+                  }
+                  img {
+                        width: 150px;
+                      }
+                      .pulgar{
+                        width :20px;
+                      }
+                         ul{
+                           padding: 10px;
+                         }
+                     li{
+                       padding: 2px 8px;
+                     }    
+                     button{
+                        width: 90px;
+                         font-size: 1em;
+                        
+                     }
+                }
             </style>
             <template>
             <section class='board'>   
@@ -195,7 +241,7 @@ class GameBoard extends HTMLElement {
     content.querySelector(".player-name").innerHTML = this.playerName;
     content.querySelector(".title").innerHTML = `Welcome! ${
       this.playerName
-    }, play the game...`;
+      }, play the game...`;
     content.querySelector("#score-player").innerHTML = this._scorePlayer;
     content.querySelector("#score-cpu").innerHTML = this._scoreCpu;
     const buttons = content.querySelectorAll("button");
@@ -245,7 +291,7 @@ class GameBoard extends HTMLElement {
         <ul>
         <li><img src="./assets/img/ok.png" alt='win!!' class='pulgar'/> ${
           this.playerName
-        } Gana!!!  <img src="./assets/img/ok.png" alt='win!!' class='pulgar'/> </li>
+          } Gana!!!  <img src="./assets/img/ok.png" alt='win!!' class='pulgar'/> </li>
         </ul>
         `;
         break;

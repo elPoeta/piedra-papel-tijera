@@ -36,3 +36,20 @@ figure {
 img {
   width: 200px;
 }
+
+@media (max-width: 600px){
+  .container{
+    width: 100%;
+  }
+  h1{
+   font-size: 1.3em;
+  }
+  figure {
+    padding: 1.6rem 0.9rem;
+    background-color: #fda744;
+    border: 6px solid #fff;
+  }
+  img {
+    width: 100px;
+  }
+} 

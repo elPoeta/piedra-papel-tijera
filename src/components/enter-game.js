@@ -39,6 +39,24 @@ class EnterGame extends HTMLElement {
                    background-color: #7ccaee;
                    cursor: pointer;
                }
+               @media (max-width: 600px){
+                .ingresar, .error{
+                    width:95%;
+                    margin: 5px auto;
+                   }
+                
+                   #user-name{
+                       width: 95%;
+                       padding: 5px;
+                       font-size: 1em;
+                   }
+                   
+                   #btn-enter{
+                    width: 35%;
+                    font-size: 1em;
+                   }
+                   
+               }
              </style>
             <section class="ingresar">
                 <input type="text" id="user-name" placeholder="Ingresa tu nombre..." autofocus required />
