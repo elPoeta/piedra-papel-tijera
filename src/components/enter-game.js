@@ -44,7 +44,9 @@ class EnterGame extends HTMLElement {
                     width:95%;
                     margin: 5px auto;
                    }
-                
+                   .error{
+                       font-size: .8em;
+                   }
                    #user-name{
                        width: 95%;
                        padding: 5px;
